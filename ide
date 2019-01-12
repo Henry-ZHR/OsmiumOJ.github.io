@@ -1,0 +1,305 @@
+
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Osmium OJ·IDE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" href="https://cdn.luogu.org/css/amazeui.min.css"/>
+<link rel="stylesheet" href="https://cdn.luogu.org/css/luogu3.css">
+<link rel="stylesheet" href="https://cdn.luogu.org/css/highlight_tomorrow.css">
+<script src="https://cdn.luogu.org/js/jquery-2.1.1.min.js"></script>
+<script src="https://cdn.luogu.org/js/luogu3_pre.js?ver=20170210"></script>
+<style>
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+        .am-topbar {
+            margin-bottom: 0;
+        }
+
+        .lg-ide-buttom {
+            bottom: 0;
+            height: 150px;
+            background-color: #ddd;
+            position: absolute;
+            width: 100%;
+        }
+
+        #lg-ide-main {
+            height: 100%;
+        }
+
+        #lg-ide-body {
+            bottom: 150px;
+            top: 50px;
+            position: absolute;
+            width: 100%;
+        }
+
+        .lg-ide-buttom textarea {
+
+        }
+
+        .lg-ide-pre {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+
+        }
+
+        .lg-ide-buttom-title {
+            height: 30px;
+            background-color: #ddd;
+            color: #666;
+            padding: 5px;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .lg-ide-buttom-title .lg-ide-buttom-tt {
+            background: #fff;
+            padding: 4px 10px 4px 10px;
+            border-top: thick #666666;
+        }
+
+        .lg-ide-buttom-pre {
+            height: 120px;
+        }
+    </style>
+</head>
+<body class="">
+<div id="lg-ide-main">
+<header class="am-topbar">
+<h1 class="am-topbar-brand">
+<a href="#">Luogu IDE</a>
+</h1>
+<button class="am-topbar-btn lg-right am-btn am-btn-sm am-btn-success" name="run" style="margin-right: 10px !important;">
+<i class="am-icon-play-circle"></i> 运行(F9)
+</button>
+<div class="am-inline-block lg-right am-topbar-btn" style="margin-right: 10px !important;">
+<input type="checkbox" id="o2"> O2
+<select data-am-selected="{btnStyle: 'secondary',btnSize: 'sm',btnWidth:'100'}" name="lang">
+<option value="1">Pascal</option>
+<option value="2">C</option>
+<option value="3">C++</option>
+<option value="4">C++11</option>
+<option value="11">C++14</option>
+<option value="12">C++17</option>
+<option value="6">Python 2</option>
+<option value="7">Python 3</option>
+<option value="24">PyPy 2</option>
+<option value="25">PyPy 3</option>
+<option value="8">Java 8</option>
+<option value="9">Node.js</option>
+<option value="13">Ruby</option>
+<option value="14">Go</option>
+<option value="15">Rust</option>
+<option value="16">PHP 7</option>
+<option value="17">C# Mono</option>
+<option value="18">Visual Basic Mono</option>
+<option value="19">Haskell</option>
+<option value="20">Kotlin/Native</option>
+<option value="21">Kotlin/JVM</option>
+<option value="22">Scala</option>
+<option value="23">Perl</option>
+</select>
+</div>
+<script>
+                $("[name=lang]").find('option[value=3]').attr('selected', true);
+            </script>
+<div class="am-collapse">
+<ul class="am-nav am-nav-pills am-topbar-nav">
+<li class="am-active"><a href="#">代码</a></li>
+<li><a href="#"><span class="am-badge am-radius lg-bg-red">美国的Wallace</a></li>
+</ul>
+<div class="am-topbar-right " style="padding: 10px">
+</div>
+</div>
+</header>
+<div id="lg-ide-body">
+<pre name="code" id="code" class="lg-ide-pre"></pre>
+</div>
+<div class="lg-ide-buttom am-g am-g-collapse">
+<div class="am-u-sm-12 lg-ide-buttom-title">
+<div class="am-g">
+<div class="am-u-sm-6">
+<span class="lg-ide-buttom-tt"><strong>输入数据</strong></span>
+</div>
+<div class="am-u-sm-6">
+<span class="lg-ide-buttom-tt"><strong>输出</strong>
+<span name="label">
+</span>
+</span>
+</div>
+</div>
+</div>
+<div class="am-u-sm-6 lg-ide-buttom-pre">
+<pre name="sin" id="sin" class="lg-ide-pre"></pre>
+</div>
+<div class="am-u-sm-6 lg-ide-buttom-pre">
+<pre name="sout" id="sout" class="lg-ide-pre"></pre>
+</div>
+</div>
+</div>
+<script>
+
+</script>
+<script src="/js/ace/ace.js"></script>
+<script src="https://cdn.luogu.org/js/amazeui.min.js"></script>
+<script>
+    var storage = window.localStorage;
+    var editor = ace.edit("code");
+    editor.setTheme("ace/theme/clouds");
+    if (storage.getItem('lg-ide-code') != null) {
+        editor.setValue(storage.getItem('lg-ide-code'));
+    }
+    /*
+     if(storage.getItem('lg-ide-lang')!=null){
+     editor.setValue(storage.getItem('lg-ide-code'));
+     }
+     */
+    editor.setFontSize(18);
+
+    var sin = ace.edit("sin");
+    sin.setTheme("ace/theme/clouds");
+
+
+    var sout = ace.edit("sout");
+    sout.setTheme("ace/theme/clouds");
+
+
+    function to_run() {
+        var code, lang, input;
+        code = editor.getValue();
+        lang = $("[name=lang]").val();
+        input = sin.getValue();
+        //alert(code+lang+input);
+
+        storage.setItem('lg-ide-lang', lang);
+        storage.setItem('lg-ide-code', code);
+
+        $('[name=run]').addClass("am-disable")
+            .html('<i class="am-icon-spinner am-icon-pulse"></i> 运行中...');
+
+        $.post("/app/ajax_ide_run",
+            {code: code, lang: lang, input: input, o2: $("#o2").is(':checked')},
+            function (data) {
+                var d=JSON.parse(data);
+                if(d.code===200) connectWs(d.more.rid);
+                else {
+                    $('[name=label]').html(d.message);
+                    $('[name=run]').removeClass("am-disable").html('<i class="am-icon-play-circle"></i> 运行(F9)');
+                }
+            });
+    }
+
+    var ws = null;
+    var joinedChannelID = -1;
+    function connectWs(id) {
+        function joinChannel(rid){
+            rid=''+rid;
+            if(joinedChannelID!==-1)
+                ws.send(JSON.stringify({
+                    "type": "disconnect_channel",
+                    "channel": "ide.track",
+                    "channel_param": joinedChannelID
+                }));
+            ws.send(JSON.stringify({
+                "type": "join_channel",
+                "channel": "ide.track",
+                "channel_param": rid
+            }));
+            joinedChannelID=rid;
+        }
+        if(ws!=null) {
+            if(id)
+                joinChannel(id);
+            return;
+        }
+        try {
+            ws = new WebSocket('wss://ws.luogu.org/ws');
+        } catch (e){
+            show_alert("错误", "无法连接追踪服务器，请稍后重试。");
+            return;
+        }
+        ws.onopen = function() {
+            if(id)
+                joinChannel(id);
+        };
+        ws.onmessage = function (event) {
+            data=JSON.parse(event.data);
+            if(data._ws_type === "server_broadcast")
+                renderResult(data);
+        };
+    }
+    connectWs();
+    function renderResult(data){
+        var label = '';
+        if(data.type === "compile"){
+            if(!data.success){
+                sout.setValue(data.desc);
+                label = '<span class="am-badge am-badge-warning am-radius">编译失败</span>';
+                $('[name=run]').removeClass("am-disable").html('<i class="am-icon-play-circle"></i> 运行(F9)');
+            }
+        }else if(data.type==="execute"){
+            $('[name=run]').removeClass("am-disable").html('<i class="am-icon-play-circle"></i> 运行(F9)');
+            sout.setValue(data.output);
+            switch (data.execute.error) {
+
+                case null:
+                    label = '<span class="am-badge am-badge-success am-radius">运行成功</span> '
+                        + '耗时 ' + data.execute.real_time + 'ms 内存' + data.execute.memory + 'kb';
+                    break;
+                case 'Runtime Error':
+                    label = '<span class="am-badge lg-bg-purple am-radius">运行时错误</span> ';
+                    break;
+                case 'Time Limit Exceeded':
+                    label = '<span class="am-badge lg-bg-bluedark am-radius">超过时间限制</span> ';
+                    break;
+                case 'Memory Limit Exceeded':
+                    label = '<span class="am-badge lg-bg-bluedark am-radius">超出内存限制</span> ';
+                    break;
+                case 'Output Limit Exceeded':
+                    label = '<span class="am-badge lg-bg-bluedark am-radius">超出输出限制</span> ';
+                    break;
+            }
+        }
+        $('[name=label]').html(label);
+    }
+    $('[name=run]').click(function () {
+        to_run();
+    });
+    $(document).keydown(function (event) {
+        if (event.keyCode === 120)
+            to_run();
+    });
+    highlighting_langs={
+        '1':'pascal',
+        '2':'c_cpp','3':'c_cpp','4':'c_cpp','11':'c_cpp','12':'c_cpp',
+        '6':'python','7':'python','24':'python','25':'python',
+        '8':'java',
+        '9':'javascript',
+        '13':'ruby',
+        '14':'golang',
+        '15':'rust',
+        '16':'php',
+        '17':'csharp',
+        '18':'vbscript',
+        '19':'haskell',
+        '20':'kotlin','21':'kotlin',
+        '22':'scala',
+        '23':'perl'
+    };
+    editor.session.setMode("ace/mode/"+highlighting_langs[$("[name=lang]").val()]);
+    $("[name=lang]").change(function(event){
+        editor.session.setMode("ace/mode/"+highlighting_langs[$("[name=lang]").val()]);
+    });
+
+</script>
+</body>
+</html>
