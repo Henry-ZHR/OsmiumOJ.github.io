@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title> About us - Osmium OJ </title>
-		<link rel="icon" href="OOJlogo.ico" type="image/x-icon" />
-		<style>
-	.button1 {
-            -webkit-transition-duration: 0.4s;
-            transition-duration: 0.4s;
-            padding: 14px 32px;
-            text-align: center;
-            background-color: white;
-            color: #2200aa;
-            border: 2px solid #2200aa;
-            border-radius:5px;
-        }
-        .button1:hover {
-            background-color: #2200aa;
-            color: white;
-        }
-		.button2 {
-            -webkit-transition-duration: 0.4s;
-            transition-duration: 0.4s;
-            padding: 14px 18px;
-            text-align: center;
-            background-color: white;
-            color: #2200aa;
-            border: 2px solid #2200aa;
-            border-radius: 5px;
-        }
-        .button2:hover {
-            background-color: #2200aa;
-            color: white;
-        }
-		.dhl body {
-			margin:0;
+
+<head>
+	<meta charset="utf-8">
+	<title> Osmium&nbsp;OJ </title>
+	<link rel="icon" href="OOJlogo.ico" type="image/x-icon" />
+	<style>
+		.button1 {
+			-webkit-transition-duration: 0.4s;
+			transition-duration: 0.4s;
+			padding: 14px 32px;
+			text-align: center;
+			background-color: white;
+			color: #2200aa;
+			border: 2px solid #2200aa;
+			border-radius:5px;
 		}
+		.button1:hover {
+			background-color: #2200aa;
+			color: white;
+		}
+		.button2 {
+			-webkit-transition-duration: 0.4s;
+			transition-duration: 0.4s;
+			padding: 14px 18px;
+			text-align: center;
+			background-color: white;
+			color: #2200aa;
+			border: 2px solid #2200aa;
+			border-radius: 5px;
+		}
+		.button2:hover {
+			background-color: #2200aa;
+			color: white;
+		}
+		.dhl body {margin:0;}
 		.dhl ul {
 			list-style-type: none;
 			margin: 0;
@@ -62,7 +62,6 @@
 			padding: 14px 16px;
 			text-decoration: none;
 		}
-			
 		.dhl li a:hover:not(.active) {
 			transition-duration: 0.4s;
 			background-color: #2200aa;
@@ -70,55 +69,59 @@
 		}
 		.dhl .active {
 			transition-duration: 0.4s;
-			background-color: #FFDFDF;
+			background-color: #dfdfff;
 			color: #2200aa;
 		}
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #2200aa;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			padding: 12px 16px;
+			z-index: 1;
+		}
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
 	</style>
-	</head>
+</head>
 	
-	<body>
+<body>
 		
-<div class="dhl" id="DHL">
-<ul>
-<li><a href="https://OsmiumOJ.github.io/">首页·Home</a></li>
-<li><a href="https://OsmiumOJ.functions.html">功能·Functions</a></li>
-<li><a href="https://OsmiumOJ.github.io/">登录·Login</a></li>
-<li><a href="https://OsmiumOJ.github.io/">注册·Reigister</a></li>
-<li style="float:right"><a href="about-us.html">关于我们·About&nbsp;Us</a></li>
-</ul>
-</div>
-		<!--
-		<br><br><br>
-		<span style="font-size:30px">
-			<center>Updating...</center>
-			<center>Any suggestion?</center>				
-			<center>Please email:</center>		
-			<center>Hermione_Granger@foxmail.com</center>
-			<center>or</center>				
-			<center>lemonnyh@foxmail.com</center>
-			
-			<center><form action="mailto:lemonnyh@foxmail.com">
-				<input style="color:#2200aa;font-size:20px;"type="text" size="50" maxlength="100"/>
-				<br/>
-				<button class="button2"type="submit">Submit</button>
-				<button class="button2"type="reset">Reset</button>
-			</form></center>
-		</span>
-		-->
+	<script>
+		function stop() {return false;}
+		document.oncontextmenu=stop;
+	</script>
+	
+	<div class="dhl" id="DHL">
+	<ul>
+		<li class="active"><a href="https://OsmiumOJ.github.io/">首页·Home</a></li>
+		<li><a href="functions.html">功能·Functions</a></li>
+		<li><a href="https://OsmiumOJ.github.io/">登录·Login</a></li>
+		<li><a href="https://OsmiumOJ.github.io/">注册·Reigister</a></li>
+		<li><a href="ide.html">IDE·ide</a></li>
+		<li style="float:right"><a href="about-us.html">关于我们·About&nbsp;Us</a></li>	
+	</ul>
+	</div>
+	
+	<br/><br/><br/>
+	<span style="font-size:20px">
+		<h1> 预备阶段 </h1>
+		<h2> 2019-1-12 12:00 </h2>
+		<p> 随着在HFI 402里的一声鼠标单击声， OsmiumOJ 诞生了。<br/> 站长： <br/> Harrya_Gryffindor & nyh。 </p>
+		<h2> 2019-1-12 剩余的那些时间 </h2>
+		<p> 创建logo，开始将nyh Web那些惨不忍睹的码风转换过来 </p>
+		<del> 美观暂时借用了nyh Web的设计 </del>
 		
-		<br/><br/><br/>
-		<span style="font-size:20px">
-			<h1> 预备阶段 </h1>
-			<h2> 2019-1-12 12:00 </h2>
-			<p> 随着在HFI 402里的一声鼠标单击声， OsmiumOJ 诞生了。<br/> 站长： <br/> Harrya_Gryffindor & nyh。 </p>
-			<h2> 2019-1-12 剩余的那些时间 </h2>
-			<p> 创建logo，开始将nyh Web那些惨不忍睹的码风转换过来 </p>
-			<del> 美观暂时借用了nyh Web的设计 </del>
-			
-			<h2> 2019-1-13 </h2>
-			<p> IDE上线（虽然没用）</p>
-			<p> 第一台服务器：HarryJamesPotter 维修完毕，可以使用</p>
-		</span>
-	</body>
+		<h2> 2019-1-13 </h2>
+		<p> IDE上线（虽然没用）</p>
+		<p> 第一台服务器：HarryJamesPotter 维修完毕，可以使用</p>
+	</span>
+
+</body>
 </html>
-<!--going to tidy up-->
