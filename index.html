@@ -134,10 +134,11 @@
         -->
         
         <?php
+		echo "欢迎来到OOJ!您是第 "
                 $file=fopen("Visitor.cnt","w+") or exit("⚠Unable to open file.");
                 $_cnt=fgets($file)+1;
                 file_put_contents("Visitor.cnt",var_export($_cnt,true));
-                echo $_cnt;
+                echo $_cnt . "位访客。";
                 fclose($file);
         ?>
         
